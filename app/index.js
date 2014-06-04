@@ -60,6 +60,7 @@ var MywebappGenerator = yeoman.generators.Base.extend({
         this.copy('js/placeholder-min.js', 'app/js/vendor/placeholder-min.js');
         this.write('app/js/main.js', '$(function (){\n\t\'use strict\';\n});');
 
+        this.copy('favicon.ico', 'app/favicon.ico');
         this.copy('_package.json', 'package.json');
         this.copy('_bower.json', 'bower.json');
     },
