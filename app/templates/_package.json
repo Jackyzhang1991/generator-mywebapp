@@ -1,0 +1,19 @@
+{
+    "name": "<%= _.slugify(webappName) %>",
+    "version": "0.0.0",
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "latest",
+        "gulp-autoprefixer": "latest",
+        "gulp-ruby-sass": "latest",
+        "gulp-bower-files": "latest",
+        "browser-sync": "latest",
+        "wiredep": "latest",
+        "gulp.spritesmith": "latest",
+        "gulp-rename": "latest",
+        "gulp-imagemin": "latest"
+    },
+    "engines": {
+        "node": "latest"
+    }
+}

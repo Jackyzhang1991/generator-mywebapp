@@ -1,0 +1,165 @@
+@mixin box-shadow($value: 0 0 4px 0 rgba(0, 0, 0, 0.5)) {
+    @include prefixer(box-shadow, $value, moz webkit);
+}
+
+@mixin gradients($first, $second) {
+    background-color: $first;
+    background-image: -o-linear-gradient(top, $first 0%, $second 100%);
+    background-image: -ms-linear-gradient(top, $first 0%, $second 100%);
+    background-image: -moz-linear-gradient(top, $first, $second);
+    background-image: -webkit-gradient(linear, left top, left bottom, from($first), to($second));
+    background-image: linear-gradient(top, $first 0%, $second 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$first}', endColorStr='#{$second}');
+}
+
+@mixin rgba($color, $alpha) {
+    $rgba: rgba($color, $alpha);
+    background: $rgba;
+    .lt-ie9 & {
+        $ie-hex-str: ie-hex-str($rgba);
+        background: transparent;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+    }
+}
+
+@mixin ie-rgba($color, $alpha) {
+    .lt-ie9 & {
+        $rgba: rgba($color, $alpha);
+        $ie-hex-str: ie-hex-str($rgba);
+        background: transparent;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+    }
+}
+
+@mixin background-size($value: cover) {
+    @include prefixer(background-size, $value, mox webkit o);
+}
+
+@mixin box-sizing($type: border-box) {
+    @include prefixer(box-sizing, $type, moz webkit);
+}
+
+@mixin opacity($opac) {
+    .lt-ie9 & {
+        filter: alpha(opacity = $opac * 100);
+        -ms-filter: alpha(opacity = $opac * 100);
+    }
+    opacity: $opac;
+}
+
+@mixin ie-opacity($opac) {
+    .lt-ie9 & {
+        filter: alpha(opacity = $opac * 100);
+        -ms-filter: alpha(opacity = $opac * 100);
+    }
+}
+
+@mixin transition ($properties...) {
+  // Fix for vendor-prefix transform property
+  $needs-prefixes: false;
+  $webkit: ();
+  $moz: ();
+  $spec: ();
+
+  // Create lists for vendor-prefixed transform
+  @each $list in $properties {
+    @if nth($list, 1) == "transform" {
+      $needs-prefixes: true;
+      $list1: -webkit-transform;
+      $list2: -moz-transform;
+      $list3: ();
+
+      @each $var in $list {
+        $list3: join($list3, $var);
+
+        @if $var != "transform" {
+          $list1: join($list1, $var);
+          $list2: join($list2, $var);
+        }
+      }
+
+      $webkit: append($webkit, $list1);
+         $moz: append($moz,    $list2);
+        $spec: append($spec,   $list3);
+    }
+
+    // Create lists for non-prefixed transition properties
+    @else {
+      $webkit:  append($webkit, $list, comma);
+      $moz:     append($moz,    $list, comma);
+      $spec:    append($spec,   $list, comma);
+    }
+  }
+
+  @if $needs-prefixes {
+    -webkit-transition: $webkit;
+       -moz-transition: $moz;
+            transition: $spec;
+  }
+  @else {
+    @if length($properties) >= 1 {
+      @include prefixer(transition, $properties, webkit moz spec);
+    }
+
+    @else {
+      $properties: all 0.15s ease-out 0s;
+      @include prefixer(transition, $properties, webkit moz spec);
+    }
+  }
+}
+
+@mixin rotate($deg, $orig: 50% 50%) {
+    @include prefixer(transform, rotate(#{$deg}), webkit ms);
+    @if $orig != 50% and $orig != (50% 50%) and $orig != center and $orig != (center center) {
+        @include prefixer(transform-origin, $orig, webkit ms);
+    }
+}
+
+@mixin animation($options) {
+    @include prefixer(animation, $options);
+}
+
+@mixin placeholder($color) {
+  $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+  @each $placeholder in $placeholders {
+    &:#{$placeholder}-placeholder {
+      color: $color;
+    }
+  }
+}
+
+@mixin noselect {
+    -webkit-touch-callout: none;
+    @include prefixer(user-select, none, webkit ms);
+}
+
+@mixin border-radius($radius: 5px) {
+    @include prefixer(border-radius, $radius, moz webkit);
+}
+
+@mixin prefixer($property, $value, $prefixes: webkit moz ms o) {
+    @each $prefix in $prefixes {
+        #{"-" + $prefix + "-" + $property}: #{$value};
+    }
+    #{$property}: #{$value};
+}
+
+@function em($pixels, $context: $browser-context) {
+    @return #{$pixels / $context}em;
+}
+
+%clearfix {
+    &:before, &:after {
+        content: '';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+%container {
+    max-width: $container-width + $container-gutter * 2;
+    margin: 0 auto;
+    text-align: center;
+}
