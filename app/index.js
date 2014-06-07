@@ -56,8 +56,10 @@ var MywebappGenerator = yeoman.generators.Base.extend({
         this.copy('sass/main.scss', 'app/sass/main.scss');
 
         //js
-        this.copy('js/html5shiv.js', 'app/js/vendor/html5shiv.js');
-        this.copy('js/placeholder-min.js', 'app/js/vendor/placeholder-min.js');
+        this.copy('js/ie8/placeholder-min.js', 'app/js/vendor/ie8/placeholder-min.js');
+        this.copy('js/ie8/respond.min.js', 'app/js/vendor/ie8/respond.min.js');
+        this.copy('js/ie8/jquery.backgroundSize.js', 'app/js/vendor/ie8/jquery.backgroundSize.js');
+
         this.write('app/js/main.js', '$(function (){\n\t\'use strict\';\n});');
 
         this.copy('favicon.ico', 'app/favicon.ico');
