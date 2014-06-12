@@ -20,16 +20,54 @@ var MywebappGenerator = yeoman.generators.Base.extend({
     askFor: function() {
         var done = this.async();
 
-        // Have Yeoman greet the user.
         this.log(yosay('Welcome to the marvelous Mywebapp generator!'));
 
-        var prompts = [{
+        var prompts = [
+        {
+            type: 'input',
             name: 'webappName',
             message: 'What do you wanna call your webapp?'
-        }];
+        },
+        {
+            type: 'checkbox',
+            name: 'features',
+            message: 'What more would you like?',
+                choices: [{
+                  name: 'RespondJS',
+                  value: 'includeRespondJS',
+                  checked: true
+                }, {
+                  name: 'PlaceholderJS',
+                  value: 'includePlaceholderJS',
+                  checked: true
+                }, {
+                  name: 'BackgroundSizeJS',
+                  value: 'includeBackgroundSizeJS',
+                  checked: true
+                }, {
+                  name: 'SelectivizrJS',
+                  value: 'includeSelectivizrJS',
+                  checked: true
+                }, {
+                  name: 'Modernizr',
+                  value: 'includeModernizr',
+                  checked: true
+                }]
+        }
+        ];
 
         this.prompt(prompts, function(props) {
             this.webappName = props.webappName;
+
+            var hasFeature = function (feat) {
+                  return props.features.indexOf(feat) !== -1;
+            };
+
+            this.includeRespondJS           = hasFeature('includeRespondJS');
+            this.includePlaceholderJS       = hasFeature('includePlaceholderJS');
+            this.includeBackgroundSizeJS    = hasFeature('includeBackgroundSizeJS');
+            this.includeSelectivizrJS       = hasFeature('includeSelectivizrJS');
+            this.includeModernizr           = hasFeature('includeModernizr');
 
             done();
         }.bind(this));
@@ -42,37 +80,51 @@ var MywebappGenerator = yeoman.generators.Base.extend({
         this.mkdir('app/js');
         this.mkdir('app/fonts');
         this.mkdir('app/img');
+    },
 
-        //html
-        this.copy('index.html', 'app/index.html');
+    h5bp: function() {
+        this.template('index.html',         'app/index.html');
+        this.copy('favicon.ico',            'app/favicon.ico');
+    },
 
-        //sass
-        this.copy('sass/_base.scss', 'app/sass/core/_base.scss');
-        this.copy('sass/_settings.scss', 'app/sass/core/_settings.scss');
-        this.copy('sass/_helpers.scss', 'app/sass/core/_helpers.scss');
-        this.copy('sass/_media.scss', 'app/sass/core/_media.scss');
-        this.copy('sass/_reset.scss', 'app/sass/core/_reset.scss');
-        this.copy('sass/_sprite.scss', 'app/sass/core/_sprite.scss');
-        this.copy('sass/main.scss', 'app/sass/main.scss');
+    sass: function() {
+        this.copy('sass/_base.scss',        'app/sass/core/_base.scss');
+        this.copy('sass/_settings.scss',    'app/sass/core/_settings.scss');
+        this.copy('sass/_helpers.scss',     'app/sass/core/_helpers.scss');
+        this.copy('sass/_media.scss',       'app/sass/core/_media.scss');
+        this.copy('sass/_reset.scss',       'app/sass/core/_reset.scss');
+        this.copy('sass/_sprite.scss',      'app/sass/core/_sprite.scss');
+        this.copy('sass/main.scss',         'app/sass/main.scss');
+    },
 
-        //js
-        this.copy('js/ie8/placeholder-min.js', 'app/js/vendor/ie8/placeholder-min.js');
-        this.copy('js/ie8/respond.min.js', 'app/js/vendor/ie8/respond.min.js');
-        this.copy('js/ie8/jquery.backgroundSize.js', 'app/js/vendor/ie8/jquery.backgroundSize.js');
+    js: function() {
+        if (this.includePlaceholderJS)      this.copy('js/ie8/placeholder-min.js', 'app/js/vendor/ie8/placeholder-min.js'); 
+        if (this.includeRespondJS)          this.copy('js/ie8/respond.min.js', 'app/js/vendor/ie8/respond.min.js'); 
+        if (this.includeBackgroundSizeJS)   this.copy('js/ie8/jquery.backgroundSize.js', 'app/js/vendor/ie8/jquery.backgroundSize.js'); 
 
-        this.write('app/js/main.js', '$(function (){\n\t\'use strict\';\n});');
+        this.write('app/js/main.js',        '$(function (){\n\t\'use strict\';\n});');
+    },
 
-        this.copy('favicon.ico', 'app/favicon.ico');
-        this.copy('_package.json', 'package.json');
-        this.copy('_bower.json', 'bower.json');
+    packageJSON: function() {
+        this.template('_package.json',      'package.json');
+    },
+
+    bower: function() {
+        this.template('_bower.json',        'bower.json');
+        this.copy('.bowerrc',               '.bowerrc');
+    },
+
+    git: function() {
+        this.copy('gitignore',              '.gitignore');
+    },
+
+    gulpfile: function() {
+        this.template('gulpfile.js',        'gulpfile.js');
     },
 
     projectfiles: function() {
-        this.copy('editorconfig', '.editorconfig');
-        this.copy('jshintrc', '.jshintrc');
-        this.copy('gitignore', '.gitignore');
-        this.copy('.bowerrc', '.bowerrc');
-        this.copy('gulpfile.js', 'gulpfile.js');
+        this.copy('editorconfig',           '.editorconfig');
+        this.copy('jshintrc',               '.jshintrc');
     }
 });
 

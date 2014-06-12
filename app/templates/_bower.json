@@ -2,8 +2,8 @@
     "name": "<%= _.slugify(webappName) %>",
     "version": "0.0.0",
     "dependencies": {
-        "jquery": "~1.11.0",
-        "modernizr": "latest",
-        "selectivizr": "latest"
+        <% if (includeModernizr)    	{ %> "modernizr": "latest", <% } %>
+        <% if (includeSelectivizrJS)    { %> "selectivizr": "latest", <% } %>
+        "jquery": "~1.11.0"
     }
 }

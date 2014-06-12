@@ -8,17 +8,17 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title><%= webappName%></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- bower:css -->
     <!-- endbower -->
-    <script src="js/vendor/modernizr/modernizr.js"></script>
+    <% if (includeModernizr)    { %><script src="js/vendor/modernizr/modernizr.js"></script><% } %>
     <link rel="stylesheet" href="css/main.css">
-    <!--[if lt IE 9]>
-        <script src="js/vendor/ie8/respond.min.js"></script>
-        <script src="js/vendor/selectivizr/selectivizr.js"></script>
-    <![endif]-->
+    <% if (includeRespondJS || includeSelectivizrJS) { %> <!--[if lt IE 9]>
+        <% if (includeRespondJS)    { %> <script src="js/vendor/ie8/respond.min.js"></script> <% } %>
+        <% if (includeSelectivizrJS)    { %> <script src="js/vendor/selectivizr/selectivizr.js"></script> <% } %>
+    <![endif]--> <% } %>
     </head>
     <body>
 
@@ -26,9 +26,11 @@
         <script src="js/vendor/jquery/dist/jquery.js"></script>
         <!-- endbower -->
         <script src="js/main.js"></script>
-        <!--[if lte ie 9]><script src="js/vendor/ie8/placeholder-min.js"></script><![endif]-->
-        <!--[if lt ie 9]>
+        <% if (includePlaceholderJS)    { %> <!--[if lte ie 9]><script src="js/vendor/ie8/placeholder-min.js"></script><![endif]--> <% } %>
+        <% if (includeBackgroundSizeJS)    { %> <!--[if lt ie 9]><script src="js/vendor/ie8/jquery.backgroundSize.js"></script>
         <script>
-        </script><![endif]-->
+        
+        </script>
+        <![endif]--> <% } %>
     </body>
 </html>
