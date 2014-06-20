@@ -10,14 +10,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><%= webappName%></title>
     <meta name="description" content="">
+    <% if (response) { %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <% } %>
     <!-- bower:css -->
     <!-- endbower -->
     <% if (includeModernizr)    { %><script src="js/vendor/modernizr/modernizr.js"></script><% } %>
     <link rel="stylesheet" href="css/main.css">
     <% if (includeRespondJS || includeSelectivizrJS) { %> <!--[if lt IE 9]>
-        <% if (includeRespondJS)    { %> <script src="js/vendor/ie8/respond.min.js"></script> <% } %>
-        <% if (includeSelectivizrJS)    { %> <script src="js/vendor/selectivizr/selectivizr.js"></script> <% } %>
+        <% if (includeRespondJS) { %>       <script src="js/vendor/respond/dest/respond.min.js"></script> <% } %>
+        <% if (includeSelectivizrJS) { %>   <script src="js/vendor/selectivizr/selectivizr.js"></script> <% } %>
     <![endif]--> <% } %>
     </head>
     <body>
@@ -26,11 +28,19 @@
         <script src="js/vendor/jquery/dist/jquery.js"></script>
         <!-- endbower -->
         <script src="js/main.js"></script>
-        <% if (includePlaceholderJS)    { %> <!--[if lte ie 9]><script src="js/vendor/ie8/placeholder-min.js"></script><![endif]--> <% } %>
-        <% if (includeBackgroundSizeJS)    { %> <!--[if lt ie 9]><script src="js/vendor/ie8/jquery.backgroundSize.js"></script>
+        <% if (includePlaceholderJS) { %> 
+        <!--[if lte ie 9]><script src="js/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+        <% } %>
+        <% if (includeBackgroundSizeJS) { %> 
+        <!--[if lt ie 9]><script src="js/vendor/jquery.backgroundSize/jquery.backgroundSize.js"></script>
+        <% } %>
+        <% if (includePlaceholderJS || includeBackgroundSizeJS) { %>
         <script>
-        
+            $(function(){
+                $('input, textarea').placeholder();
+            });
         </script>
-        <![endif]--> <% } %>
+        <![endif]-->
+        <% } %>
     </body>
 </html>

@@ -2,8 +2,11 @@
     "name": "<%= _.slugify(webappName) %>",
     "version": "0.0.0",
     "dependencies": {
-        <% if (includeModernizr)    	{ %> "modernizr": "latest", <% } %>
-        <% if (includeSelectivizrJS)    { %> "selectivizr": "latest", <% } %>
+        <% if (includeModernizr)    		{ %> "modernizr": "latest", <% } %>
+        <% if (includeSelectivizrJS)    	{ %> "selectivizr": "latest", <% } %>
+        <% if (includeRespondJS)    		{ %> "respond": "latest", <% } %>
+        <% if (includePlaceholderJS)    	{ %> "jquery-placeholder": "latest", <% } %>
+        <% if (includeBackgroundSizeJS)    	{ %> "jquery.backgroundSize": "latest", <% } %>
         "jquery": "~1.11.0"
     }
 }

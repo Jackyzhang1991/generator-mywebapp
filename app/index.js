@@ -29,6 +29,11 @@ var MywebappGenerator = yeoman.generators.Base.extend({
             message: 'What do you wanna call your webapp?'
         },
         {
+            type: 'confirm',
+            name: 'response',
+            message: 'Would you like to include <meta> tag viewport?'
+        },
+        {
             type: 'checkbox',
             name: 'features',
             message: 'What more would you like?',
@@ -58,6 +63,7 @@ var MywebappGenerator = yeoman.generators.Base.extend({
 
         this.prompt(prompts, function(props) {
             this.webappName = props.webappName;
+            this.response=props.response;
 
             var hasFeature = function (feat) {
                   return props.features.indexOf(feat) !== -1;
@@ -98,10 +104,6 @@ var MywebappGenerator = yeoman.generators.Base.extend({
     },
 
     js: function() {
-        if (this.includePlaceholderJS)      this.copy('js/ie8/placeholder-min.js', 'app/js/vendor/ie8/placeholder-min.js'); 
-        if (this.includeRespondJS)          this.copy('js/ie8/respond.min.js', 'app/js/vendor/ie8/respond.min.js'); 
-        if (this.includeBackgroundSizeJS)   this.copy('js/ie8/jquery.backgroundSize.js', 'app/js/vendor/ie8/jquery.backgroundSize.js'); 
-
         this.write('app/js/main.js',        '$(function (){\n\t\'use strict\';\n});');
     },
 
