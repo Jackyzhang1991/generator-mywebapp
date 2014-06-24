@@ -15,7 +15,7 @@ app/
 |-img/
     |-sprite/
 |-js/
-    |-vendor
+    |-vendor/
     |-main.js
 |-sass/
     |-core/

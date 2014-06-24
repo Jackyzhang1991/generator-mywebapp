@@ -1,6 +1,6 @@
 {
     "name": "<%= _.slugify(webappName) %>",
-    "version": "0.0.2",
+    "version": "0.0.0",
     "dependencies": {},
     "devDependencies": {
         "gulp":                     "latest",
