@@ -27,9 +27,9 @@ app/
         |-_sprite.scss
     |-vendor/
     |-main.scss
-```
 |-favicon.ico
 |-index.html
+```
 * Prepared [_helpers.scss](app/templates/sass/_helpers.scss) with mixins for vendor prefixes
 * Optionally including useful js libraries
 * Built-in preview server with browser-sync
