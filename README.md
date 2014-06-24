@@ -8,26 +8,28 @@ yeoman generator for webapp
 Please see [gulpfile.js](app/templates/gulpfile.js) for up to date information on what I support.
 
 * Extremely easy project structure
-        app/
-        |-css/
-        |-fonts/
-        |-img/
-        	|-sprite/
-        |-js/
-        	|-vendor
-            |-main.js
-        |-sass/
-        	|-core/
-				|-_base.scss 
-                |-_helpers.scss
-                |-_media.scss
-                |-_reset.scss
-                |-_settings.scss
-                |-_sprite.scss
-            |-vendor/
-            |-main.scss
-        |-favicon.ico
-        |-index.html
+```
+app/
+|-css/
+|-fonts/
+|-img/
+    |-sprite/
+|-js/
+    |-vendor
+    |-main.js
+|-sass/
+    |-core/
+        |-_base.scss 
+        |-_helpers.scss
+        |-_media.scss
+        |-_reset.scss
+        |-_settings.scss
+        |-_sprite.scss
+    |-vendor/
+    |-main.scss
+```
+|-favicon.ico
+|-index.html
 * Prepared [_helpers.scss](app/templates/sass/_helpers.scss) with mixins for vendor prefixes
 * Optionally including useful js libraries
 * Built-in preview server with browser-sync
