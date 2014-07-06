@@ -3,40 +3,60 @@ var gulp            = require('gulp'),
     browserSync     = require('browser-sync'),
     wiredep         = require('wiredep').stream,
     prefix          = require('gulp-autoprefixer'),
-    sass            = require('gulp-ruby-sass'),
+    <% if (csspreprocessor==='less') { %>
+    sourcemaps      = require('gulp-sourcemaps'),
+    less            = require('gulp-less'), <% } %>
+    <% if (csspreprocessor==='sass') { %>
+    sass            = require('gulp-ruby-sass'), <% } %>
     spritesmith     = require('gulp.spritesmith'),
-    rename          = require("gulp-rename"),
+    rename          = require('gulp-rename'),
     imagemin        = require('gulp-imagemin');
 
 gulp.task('sprite', function() {
-    var spriteData = gulp.src('app/img/sprite/*.png').pipe(spritesmith({
-        imgName: 'sprite.png',
-        cssName: '_sprite.scss',
+    var spriteData = gulp.src('app/img/sprites/*.png').pipe(spritesmith({
+        imgName: 'sprites.png',
         padding: 15,
         algorithm: 'binary-tree',
-        cssFormat: 'scss'
+        <% if (csspreprocessor==='sass') { %>cssName: '_sprite.scss',
+        cssFormat: 'scss'<% } %>
+        <% if (csspreprocessor==='less') { %>cssName: 'sprite.less',
+        cssFormat: 'less'<% } %>
     }));
     spriteData.img.pipe(gulp.dest('app/img'));
-    spriteData.css.pipe(gulp.dest('app/sass/core'));
+    <% if (csspreprocessor==='sass') { %>spriteData.css.pipe(gulp.dest('app/sass/core'));<% } %>
+    <% if (csspreprocessor==='less') { %>spriteData.css.pipe(gulp.dest('app/less/core'));<% } %>
 });
 
 gulp.task('browser-sync', function() {
-    browserSync.init(["app/*html", "app/css/*.css", "app/js/main.js"], {
+    browserSync.init(['app/*html', 'app/css/*.css', 'app/js/main.js'], {
         server: {
-            baseDir: "app/"
+            baseDir: 'app/'
         }
     });
 });
 
+<% if (csspreprocessor==='sass') { %>
 gulp.task('sass', function() {
     gulp.src('app/sass/main.scss')
         .pipe(sass({
             style: 'expended',
             sourcemap: true
-        }))
+        }).on('error', function(er){
+                console.log(er.message);
+            }))
         .pipe(gulp.dest('app/css'));
-});
+});<% } %>
 
+<% if (csspreprocessor==='less') { %>
+gulp.task('less', function () {
+    gulp.src('app/less/main.less')
+        .pipe(sourcemaps.init())
+        .pipe(less().on('error', function(er){
+                console.log(er.message);
+            }))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('app/css'));
+});<% } %>
 
 gulp.task('wiredep', function() {
     gulp.src('app/*.html')
@@ -48,7 +68,7 @@ gulp.task('wiredep', function() {
 
 gulp.task('autoprefixer', function() {
     gulp.src('app/css/main.css')
-        .pipe(prefix("last 2 version", "ff 3.6", "Chrome 4.0", "Opera 11.1", "Safari 4.0", "ie >= 8", {
+        .pipe(prefix('last 2 version', 'ie >= 8', {
             cascade: true
         }))
         .pipe(gulp.dest('app/css'));
@@ -62,6 +82,7 @@ gulp.task('imagemin', function() {
         .pipe(gulp.dest('app/img'));
 });
 
-gulp.task('default', ['sass', 'browser-sync'], function() {
-    gulp.watch("app/sass/**/*.scss", ['sass']);
+gulp.task('default', [<% if (csspreprocessor==='sass') { %>'sass'<% } %><% if (csspreprocessor==='less') { %>'less'<% } %>, 'browser-sync'], function() {
+    <% if (csspreprocessor==='sass') { %>gulp.watch('app/sass/**/*.scss', ['sass']);<% } %>
+    <% if (csspreprocessor==='less') { %>gulp.watch('app/less/**/*.less', ['less']);<% } %>
 });

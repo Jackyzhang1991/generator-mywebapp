@@ -1,0 +1,196 @@
+/*
+LESS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: @icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+@icon-home: x y offset_x offset_y width height total_width total_height image_path;
+*/
+@amex-x: 0px;
+@amex-y: 0px;
+@amex-offset-x: 0px;
+@amex-offset-y: 0px;
+@amex-width: 28px;
+@amex-height: 17px;
+@amex-total-width: 132px;
+@amex-total-height: 105px;
+@amex-image: '../img/sprite.png';
+@amex: 0px 0px 0px 0px 28px 17px 132px 105px '../img/sprite.png';
+@envelope-x: 22px;
+@envelope-y: 64px;
+@envelope-offset-x: -22px;
+@envelope-offset-y: -64px;
+@envelope-width: 20px;
+@envelope-height: 14px;
+@envelope-total-width: 132px;
+@envelope-total-height: 105px;
+@envelope-image: '../img/sprite.png';
+@envelope: 22px 64px -22px -64px 20px 14px 132px 105px '../img/sprite.png';
+@facebook-x: 0px;
+@facebook-y: 64px;
+@facebook-offset-x: 0px;
+@facebook-offset-y: -64px;
+@facebook-width: 7px;
+@facebook-height: 14px;
+@facebook-total-width: 132px;
+@facebook-total-height: 105px;
+@facebook-image: '../img/sprite.png';
+@facebook: 0px 64px 0px -64px 7px 14px 132px 105px '../img/sprite.png';
+@heart-x: 118px;
+@heart-y: 28px;
+@heart-offset-x: -118px;
+@heart-offset-y: -28px;
+@heart-width: 14px;
+@heart-height: 12px;
+@heart-total-width: 132px;
+@heart-total-height: 105px;
+@heart-image: '../img/sprite.png';
+@heart: 118px 28px -118px -28px 14px 12px 132px 105px '../img/sprite.png';
+@idealm-x: 85px;
+@idealm-y: 0px;
+@idealm-offset-x: -85px;
+@idealm-offset-y: 0px;
+@idealm-width: 18px;
+@idealm-height: 15px;
+@idealm-total-width: 132px;
+@idealm-total-height: 105px;
+@idealm-image: '../img/sprite.png';
+@idealm: 85px 0px -85px 0px 18px 15px 132px 105px '../img/sprite.png';
+@instagram-x: 85px;
+@instagram-y: 30px;
+@instagram-offset-x: -85px;
+@instagram-offset-y: -30px;
+@instagram-width: 14px;
+@instagram-height: 14px;
+@instagram-total-width: 132px;
+@instagram-total-height: 105px;
+@instagram-image: '../img/sprite.png';
+@instagram: 85px 30px -85px -30px 14px 14px 132px 105px '../img/sprite.png';
+@maestro-x: 0px;
+@maestro-y: 32px;
+@maestro-offset-x: 0px;
+@maestro-offset-y: -32px;
+@maestro-width: 27px;
+@maestro-height: 17px;
+@maestro-total-width: 132px;
+@maestro-total-height: 105px;
+@maestro-image: '../img/sprite.png';
+@maestro: 0px 32px 0px -32px 27px 17px 132px 105px '../img/sprite.png';
+@mastercard-x: 42px;
+@mastercard-y: 32px;
+@mastercard-offset-x: -42px;
+@mastercard-offset-y: -32px;
+@mastercard-width: 27px;
+@mastercard-height: 16px;
+@mastercard-total-width: 132px;
+@mastercard-total-height: 105px;
+@mastercard-image: '../img/sprite.png';
+@mastercard: 42px 32px -42px -32px 27px 16px 132px 105px '../img/sprite.png';
+@paypal-x: 0px;
+@paypal-y: 93px;
+@paypal-offset-x: 0px;
+@paypal-offset-y: -93px;
+@paypal-width: 42px;
+@paypal-height: 12px;
+@paypal-total-width: 132px;
+@paypal-total-height: 105px;
+@paypal-image: '../img/sprite.png';
+@paypal: 0px 93px 0px -93px 42px 12px 132px 105px '../img/sprite.png';
+@search-x: 86px;
+@search-y: 64px;
+@search-offset-x: -86px;
+@search-offset-y: -64px;
+@search-width: 13px;
+@search-height: 13px;
+@search-total-width: 132px;
+@search-total-height: 105px;
+@search-image: '../img/sprite.png';
+@search: 86px 64px -86px -64px 13px 13px 132px 105px '../img/sprite.png';
+@shopping-bag-x: 118px;
+@shopping-bag-y: 0px;
+@shopping-bag-offset-x: -118px;
+@shopping-bag-offset-y: 0px;
+@shopping-bag-width: 14px;
+@shopping-bag-height: 13px;
+@shopping-bag-total-width: 132px;
+@shopping-bag-total-height: 105px;
+@shopping-bag-image: '../img/sprite.png';
+@shopping-bag: 118px 0px -118px 0px 14px 13px 132px 105px '../img/sprite.png';
+@t-x: 57px;
+@t-y: 64px;
+@t-offset-x: -57px;
+@t-offset-y: -64px;
+@t-width: 14px;
+@t-height: 13px;
+@t-total-width: 132px;
+@t-total-height: 105px;
+@t-image: '../img/sprite.png';
+@t: 57px 64px -57px -64px 14px 13px 132px 105px '../img/sprite.png';
+@twitter-x: 57px;
+@twitter-y: 93px;
+@twitter-offset-x: -57px;
+@twitter-offset-y: -93px;
+@twitter-width: 16px;
+@twitter-height: 12px;
+@twitter-total-width: 132px;
+@twitter-total-height: 105px;
+@twitter-image: '../img/sprite.png';
+@twitter: 57px 93px -57px -93px 16px 12px 132px 105px '../img/sprite.png';
+@vine-x: 118px;
+@vine-y: 55px;
+@vine-offset-x: -118px;
+@vine-offset-y: -55px;
+@vine-width: 13px;
+@vine-height: 11px;
+@vine-total-width: 132px;
+@vine-total-height: 105px;
+@vine-image: '../img/sprite.png';
+@vine: 118px 55px -118px -55px 13px 11px 132px 105px '../img/sprite.png';
+@visa-x: 43px;
+@visa-y: 0px;
+@visa-offset-x: -43px;
+@visa-offset-y: 0px;
+@visa-width: 27px;
+@visa-height: 17px;
+@visa-total-width: 132px;
+@visa-total-height: 105px;
+@visa-image: '../img/sprite.png';
+@visa: 43px 0px -43px 0px 27px 17px 132px 105px '../img/sprite.png';
+
+/*
+The provided classes are intended to be used with the array-like variables
+
+.icon-home {
+  .sprite-width(@icon-home);
+}
+.icon-email {
+  .sprite(@icon-email);
+}
+*/
+.sprite-width(@sprite) {
+  width: ~`"@{sprite}".split(', ')[4]`;
+}
+
+.sprite-height(@sprite) {
+  height: ~`"@{sprite}".split(', ')[5]`;
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: ~`"@{sprite}".split(', ')[2]`;
+  @sprite-offset-y: ~`"@{sprite}".split(', ')[3]`;
+  background-position: @sprite-offset-x  @sprite-offset-y;
+}
+
+.sprite-image(@sprite) {
+  @sprite-image: ~`"@{sprite}".split(', ')[8].slice(1, -2)`;
+  background-image: url(@sprite-image);
+}
+
+.sprite(@sprite) {
+  .sprite-image(@sprite);
+  .sprite-position(@sprite);
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}

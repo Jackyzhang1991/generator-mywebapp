@@ -1,46 +1,31 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
     <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= webappName%></title>
-    <meta name="description" content="">
-    <% if (response) { %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <% } %>
-    <!-- bower:css -->
-    <!-- endbower -->
-    <% if (includeModernizr)    { %><script src="js/vendor/modernizr/modernizr.js"></script><% } %>
-    <link rel="stylesheet" href="css/main.css">
-    <% if (includeRespondJS || includeSelectivizrJS) { %> <!--[if lt IE 9]>
-        <% if (includeRespondJS) { %>       <script src="js/vendor/respond/dest/respond.min.js"></script> <% } %>
-        <% if (includeSelectivizrJS) { %>   <script src="js/vendor/selectivizr/selectivizr.js"></script> <% } %>
-    <![endif]--> <% } %>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title><%= webappName%></title>
+        <meta name="description" content="">
+        <% if (response) { %>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><% } %>
+        <% if (includeModernizr)    { %><script src="js/vendor/modernizr/modernizr.js"></script><% } %>
+        <link rel="stylesheet" href="css/main.css">
+        <% if (includeRespondJS || includeSelectivizrJS) { %> <!--[if lt IE 9]>
+            <% if (includeRespondJS) { %>       <script src="js/vendor/respond/dest/respond.min.js"></script> <% } %>
+            <% if (includeSelectivizrJS) { %>   <script src="js/vendor/selectivizr/selectivizr.js"></script> <% } %>
+        <![endif]--> <% } %>
     </head>
     <body>
 
-        <!-- bower:js -->
         <script src="js/vendor/jquery/dist/jquery.js"></script>
-        <!-- endbower -->
         <script src="js/main.js"></script>
         <% if (includePlaceholderJS) { %> 
-        <!--[if lte ie 9]><script src="js/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+        <!--[if lte ie 9]><script src="js/vendor/jquery-placeholder/jquery.placeholder.js"></script><![endif]-->
         <% } %>
         <% if (includeBackgroundSizeJS) { %> 
-        <!--[if lt ie 9]><script src="js/vendor/jquery.backgroundSize/jquery.backgroundSize.js"></script>
-        <% } %>
-        <% if (includePlaceholderJS || includeBackgroundSizeJS) { %>
-        <script>
-            $(function(){
-                $('input, textarea').placeholder();
-            });
-        </script>
-        <![endif]-->
+        <!--[if lt ie 9]><script src="js/vendor/jquery.backgroundSize/jquery.backgroundSize.js"></script><![endif]-->
         <% } %>
     </body>
 </html>

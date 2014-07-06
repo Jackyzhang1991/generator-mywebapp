@@ -3,15 +3,32 @@
     "version": "0.0.0",
     "dependencies": {},
     "devDependencies": {
+        <% if (taskrunner === "gulp") { %>
         "gulp":                     "latest",
         "gulp-autoprefixer":        "latest",
-        "gulp-ruby-sass":           "latest",
+        <% if (csspreprocessor === "less") { %>
+        "gulp-sourcemaps":          "latest",
+        "gulp-less":                "latest", <% } %>
+        <% if (csspreprocessor === "sass") { %>
+        "gulp-ruby-sass":           "latest", <% } %>
         "gulp-bower-files":         "latest",
         "browser-sync":             "latest",
         "wiredep":                  "latest",
         "gulp.spritesmith":         "latest",
         "gulp-rename":              "latest",
-        "gulp-imagemin":            "latest"
+        "gulp-imagemin":            "latest" <% } %>
+        <% if (taskrunner === "grunt") { %>
+        "grunt-contrib-watch":      "latest",
+        "grunt":                    "latest",
+        "grunt-newer":              "latest",
+        "load-grunt-tasks":         "latest",
+        "grunt-spritesmith":        "latest",
+        <% if (csspreprocessor === "less") { %>
+        "grunt-contrib-less":       "latest", <% } %>
+        <% if (csspreprocessor === "sass") { %>
+        "grunt-contrib-sass":       "latest", <% } %>
+        "grunt-browser-sync":       "latest",
+        "grunt-uncss":              "latest" <% } %>
     },
     "engines": {
         "node": "latest"

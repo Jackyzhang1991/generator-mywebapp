@@ -1,0 +1,38 @@
+.container() {
+    .center-block;
+    max-width: @container-gutter*2 + @cw;
+}
+
+.em(@target: @browser-context, @context: @browser-context ) {
+    font-size: unit(@target /@context, em);
+}
+    
+.rgba(@colour, @alpha)
+{
+    @alphaColour: hsla(hue(@colour), saturation(@colour), lightness(@colour), @alpha);
+    @ieAlphaColour: argb(@alphaColour);
+     
+    background: @alphaColour; 
+     
+    .lt-ie9 &{
+        background: transparent;
+        -ms-filter:  "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{ieAlphaColour}, endColorstr=@{ieAlphaColour})"; 
+    }
+}
+
+.ie-rgba(@colour, @alpha){
+    
+    @alphaColour: hsla(hue(@colour), saturation(@colour), lightness(@colour), @alpha);
+    @ieAlphaColour: argb(@alphaColour);
+     
+    .lt-ie9 &{
+        background: transparent;
+        -ms-filter:  "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{ieAlphaColour}, endColorstr=@{ieAlphaColour})"; 
+    }
+}
+
+.align(){
+    position: absolute;
+    left: 50%;
+    .translate(-50%, 0);
+}
