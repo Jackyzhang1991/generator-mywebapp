@@ -32,7 +32,7 @@
 }
 
 @mixin background-size($value: cover) {
-    @include prefixer(background-size, $value, mox webkit o);
+    @include prefixer(background-size, $value, moz webkit o);
 }
 
 @mixin box-sizing($type: border-box) {
